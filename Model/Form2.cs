@@ -320,6 +320,7 @@ namespace Model
                 HTuple width, height;
                 HOperatorSet.GetImageSize(ho_Image, out width, out height);
                 double ratioWidth = (1.0) * width[0].I / hWindowControl1.Width;
+
                 double ratioHeight = (1.0) * height[0].I / hWindowControl1.Height;
                 HTuple row1, column1, row2, column2;
                 if (ratioWidth >= ratioHeight)
