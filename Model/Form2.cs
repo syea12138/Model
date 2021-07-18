@@ -331,6 +331,7 @@ namespace Model
                     column2 = column1 + hWindowControl1.Width * ratioWidth;
                     HOperatorSet.SetPart(hWindowControl1.HalconWindow, row1, column1, row2, column2);
                 }
+
                 HOperatorSet.DispObj(ho_Image, hWindowControl1.HalconWindow);
 
             }
