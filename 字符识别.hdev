@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="17.12">
+<procedure name="main">
+<interface/>
+<body>
+<l>    read_image (Image, 'C:/Users/14499/Desktop/1.PNG')</l>
+<c></c>
+<l>    invert_image (Image, ImageInvert)</l>
+<c></c>
+<l>    threshold (ImageInvert, Region, 128, 255)</l>
+<l>dilation_circle (Region, Region, 2)</l>
+<l>    connection (Region, ConnectedRegions)</l>
+<c></c>
+<l>    select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 100, 1223.71)</l>
+<c></c>
+<l>    sort_region (SelectedRegions, SortedRegions, 'character', 'true', 'column')</l>
+<c></c>
+<c>    *计算每一个字符区域中心</c>
+<c></c>
+<l>    area_center (SortedRegions, Area, Row, Column)</l>
+<c></c>
+<l>    FontFile:='E:/testWords.omc'</l>
+<c></c>
+<c>    *读取已训练好的参数</c>
+<c></c>
+<l>    read_ocr_class_mlp('e:/testWords.omc', OCRHandle)</l>
+<c></c>
+<c>    *识别</c>
+<c></c>
+<l>    do_ocr_multi_class_mlp (SortedRegions, Image, OCRHandle, RecNum, Confidence)</l>
+<c></c>
+<c>    *显示在屏幕上</c>
+<c></c>
+<l>    *set_display_font (3600, 27, 'mono', 'true', 'false')</l>
+<l>set_display_font (200000, 16, 'mono', 'true', 'false')</l>
+<l>    for i := 0 to |RecNum| - 1 by 1</l>
+<c></c>
+<l>        disp_message (200000, RecNum[i], 'image', Row[i],Column[i], 'white', 'false')</l>
+<c></c>
+<l>    endfor </l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
